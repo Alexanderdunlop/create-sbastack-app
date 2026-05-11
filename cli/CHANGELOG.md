@@ -1,5 +1,11 @@
 # create-sbastack-app
 
+## 0.3.1
+
+### Patch Changes
+
+- Fix generated app setup so existing git worktrees are not reinitialized, generated dependency/build directories are excluded from initial staging, `.gitignore` is created reliably, and the chat workflow route accepts direct browser requests without QStash signature verification.
+
 ## 0.3.0
 
 ### Minor Changes
