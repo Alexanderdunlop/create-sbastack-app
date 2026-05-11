@@ -23,27 +23,21 @@ A stack made by [Alex](https://substack.com/@alexjamesdunlop):
 
 - [Next.js](https://nextjs.org)
 - [ai sdk](https://ai-sdk.dev)
-- [Upstash Workflow](https://upstash.com/docs/workflow)
+- [Vercel Workflow](https://github.com/vercel/workflow)
 - [Upstash Box](https://upstash.com/docs/box)
 
 ## Upstash Setup
 
-The generated chat API uses Upstash Workflow and Upstash Box, so you need to configure both before running the app.
+The generated chat API uses Vercel Workflow with Upstash Box, so you need to configure Box before running the app.
 
-1. Get your QStash variables from the [QStash getting started guide](https://upstash.com/docs/qstash/overall/getstarted), then add them to `.env`:
-
-```bash
-QSTASH_TOKEN=your_qstash_token_here
-QSTASH_CURRENT_SIGNING_KEY=your_qstash_current_signing_key_here
-QSTASH_NEXT_SIGNING_KEY=your_qstash_next_signing_key_here
-```
-
-2. Follow the [Upstash Box quickstart](https://upstash.com/docs/box/overall/quickstart) to create an API key and a Box, then add:
+Follow the [Upstash Box quickstart](https://upstash.com/docs/box/overall/quickstart) to create an API key and a Box, then add:
 
 ```bash
 UPSTASH_BOX_API_KEY=your_upstash_box_api_key_here
 UPSTASH_BOX_ID=your_upstash_box_id_here
 ```
+
+QStash environment variables are not required for this chat flow.
 
 <h2 id="getting-started">Getting Started</h2>
 

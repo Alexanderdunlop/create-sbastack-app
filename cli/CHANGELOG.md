@@ -1,5 +1,11 @@
 # create-sbastack-app
 
+## 0.4.0
+
+### Minor Changes
+
+- Switch the generated chat template to Vercel Workflow streaming with Upstash Box.
+
 ## 0.3.1
 
 ### Patch Changes

@@ -32,6 +32,13 @@ describe("scaffoldProject", () => {
     };
     const page = await fs.readFile(path.join(targetDir, "app/page.tsx"), "utf8");
     const chatRoute = await fs.readFile(path.join(targetDir, "app/api/chat/route.ts"), "utf8");
+    const chatStreamRoute = await fs.readFile(
+      path.join(targetDir, "app/api/chat/[runId]/stream/route.ts"),
+      "utf8",
+    );
+    const chatHelper = await fs.readFile(path.join(targetDir, "lib/chat.ts"), "utf8");
+    const boxChatWorkflow = await fs.readFile(path.join(targetDir, "workflow/box-chat.ts"), "utf8");
+    const nextConfig = await fs.readFile(path.join(targetDir, "next.config.ts"), "utf8");
     const envExample = await fs.readFile(path.join(targetDir, ".env.example"), "utf8");
     const gitignore = await fs.readFile(path.join(targetDir, ".gitignore"), "utf8");
     const layout = await fs.readFile(path.join(targetDir, "app/layout.tsx"), "utf8");
@@ -40,21 +47,32 @@ describe("scaffoldProject", () => {
 
     expect(packageJson.name).toBe("my-app");
     expect(packageJson.dependencies.next).toBe("16.2.6");
-    expect(packageJson.dependencies.ai).toBe("6.0.177");
-    expect(packageJson.dependencies["@ai-sdk/react"]).toBe("3.0.179");
+    expect(packageJson.dependencies.ai).toBe("^7.0.0-canary.130");
+    expect(packageJson.dependencies["@ai-sdk/react"]).toBe("^4.0.0-canary.131");
+    expect(packageJson.dependencies["@ai-sdk/workflow"]).toBe("^1.0.0-canary.46");
     expect(packageJson.dependencies["@upstash/box"]).toBe("^0.4.0");
-    expect(packageJson.dependencies["@upstash/workflow"]).toBe("^1.2.1");
+    expect(packageJson.dependencies.workflow).toBe("^4.2.4");
+    expect(packageJson.dependencies).not.toHaveProperty("@upstash/workflow");
     expect(packageJson).not.toHaveProperty("peerDependencies");
     expect(packageJson).not.toHaveProperty("optionalDependencies");
     await expect(fs.stat(path.join(targetDir, "src"))).rejects.toThrow();
     expect(favicon.isFile()).toBe(true);
-    expect(page).toContain('api: "/api/chat"');
+    expect(page).toContain("WorkflowChatTransport");
     expect(page).toContain("sendMessage({ text: input })");
-    expect(chatRoute).toContain('@upstash/workflow/nextjs');
-    expect(chatRoute).toContain("Box.get(boxId)");
-    expect(chatRoute).toContain('context.waitForWebhook("wait-agent", webhook, "1h")');
-    expect(envExample).toContain("AI_GATEWAY_API_KEY=");
-    expect(envExample).toContain("QSTASH_TOKEN=");
+    expect(chatRoute).toContain("start(boxChat, [messages])");
+    expect(chatRoute).toContain("createUIMessageStreamResponse");
+    expect(chatRoute).toContain("x-workflow-run-id");
+    expect(chatStreamRoute).toContain("getRun(runId)");
+    expect(chatStreamRoute).toContain("startIndex");
+    expect(chatHelper).toContain("buildPrompt");
+    expect(boxChatWorkflow).toContain('"use workflow"');
+    expect(boxChatWorkflow).toContain('"use step"');
+    expect(boxChatWorkflow).toContain("getWritable<UIMessageChunk>");
+    expect(boxChatWorkflow).toContain('type: "finish"');
+    expect(boxChatWorkflow).toContain('finishReason: "stop"');
+    expect(nextConfig).toContain("withWorkflow(nextConfig)");
+    expect(envExample).not.toContain("AI_GATEWAY_API_KEY=");
+    expect(envExample).not.toContain("QSTASH_TOKEN=");
     expect(envExample).toContain("UPSTASH_BOX_API_KEY=");
     expect(envExample).toContain("UPSTASH_BOX_ID=");
     expect(gitignore).toContain("/node_modules");

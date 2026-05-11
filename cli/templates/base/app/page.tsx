@@ -1,14 +1,20 @@
 "use client";
 
 import { useChat } from "@ai-sdk/react";
-import { DefaultChatTransport } from "ai";
-import { useState } from "react";
+import { WorkflowChatTransport } from "@ai-sdk/workflow";
+import { useMemo, useState } from "react";
 
 export default function Page() {
+  const transport = useMemo(
+    () =>
+      new WorkflowChatTransport({
+        api: "/api/chat",
+        initialStartIndex: -50,
+      }),
+    [],
+  );
   const { messages, sendMessage, status } = useChat({
-    transport: new DefaultChatTransport({
-      api: "/api/chat",
-    }),
+    transport,
   });
   const [input, setInput] = useState("");
 

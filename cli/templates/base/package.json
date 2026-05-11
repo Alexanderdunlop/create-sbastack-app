@@ -9,13 +9,14 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@ai-sdk/react": "3.0.179",
+    "@ai-sdk/react": "^4.0.0-canary.131",
+    "@ai-sdk/workflow": "^1.0.0-canary.46",
     "@upstash/box": "^0.4.0",
-    "@upstash/workflow": "^1.2.1",
-    "ai": "6.0.177",
+    "ai": "^7.0.0-canary.130",
     "next": "16.2.6",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "workflow": "^4.2.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
