@@ -3,10 +3,12 @@
 </h1>
 
 <div align="center">
-
-[![NPM version][npm-image]][npm-url]
-[![Downloads][downloads-image]][npm-url]
-
+<a href="https://www.npmjs.com/package/create-sbastack-app" target="_parent">
+  <img alt="" src="https://img.shields.io/npm/dm/create-sbastack-app.svg" alt="npm downloads" />
+</a>
+ <a href="https://github.com/Alexanderdunlop/create-sbastack-app/stargazers" target="_parent">
+  <img alt="" src="https://img.shields.io/github/stars/Alexanderdunlop/create-sbastack-app.svg?style=social&label=Star" alt="GitHub stars" />
+</a>
 </div>
 
 ## Table of contents
