@@ -1,0 +1,12 @@
+{
+  "name": "www",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "echo \"www build not configured yet\"",
+    "dev": "echo \"www dev not configured yet\"",
+    "lint": "echo \"www lint not configured yet\"",
+    "typecheck": "echo \"www typecheck not configured yet\""
+  }
+}

@@ -1,0 +1,6 @@
+packages:
+  - cli
+  - www
+
+onlyBuiltDependencies:
+  - esbuild

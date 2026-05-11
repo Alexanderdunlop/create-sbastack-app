@@ -1,0 +1,38 @@
+{
+  "name": "create-sbastack-app",
+  "version": "0.1.0",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "create-sbastack-app": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint src tests",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "pub:release": "pnpm build && npm publish"
+  },
+  "dependencies": {
+    "@clack/prompts": "latest",
+    "commander": "latest",
+    "fs-extra": "latest",
+    "picocolors": "latest"
+  },
+  "devDependencies": {
+    "@eslint/js": "latest",
+    "@types/fs-extra": "latest",
+    "@types/node": "latest",
+    "eslint": "latest",
+    "globals": "latest",
+    "tsup": "latest",
+    "typescript": "latest",
+    "typescript-eslint": "latest",
+    "vitest": "latest"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "_example",
+  "displayName": "Example Addon",
+  "description": "Reference addon manifest for future template overlays.",
+  "category": "example",
+  "conflicts": [],
+  "dependencies": ["base"],
+  "prompts": []
+}

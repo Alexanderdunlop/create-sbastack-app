@@ -1,0 +1,24 @@
+{
+  "name": "@sbastack/root",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.8.0",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "turbo build",
+    "build:cli": "turbo --filter=create-sbastack-app build",
+    "build:www": "turbo --filter=www build",
+    "dev:cli": "turbo --filter=create-sbastack-app dev",
+    "dev:www": "turbo --filter=www dev",
+    "lint": "turbo lint",
+    "test": "turbo test",
+    "typecheck": "turbo typecheck",
+    "clean": "turbo clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "turbo": "latest"
+  }
+}
