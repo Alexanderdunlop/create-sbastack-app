@@ -13,7 +13,7 @@ interface CliOptions {
 export async function runCli(argv = process.argv): Promise<void> {
   const program = new Command()
     .name("create-sbastack-app")
-    .description("Scaffold a new SBA Stack app")
+    .description("Scaffold a new sbastack app")
     .argument("[project-name]", "Name of the project to create")
     .option("--skip-install", "Do not install dependencies")
     .option("--skip-git", "Do not initialize a git repository")

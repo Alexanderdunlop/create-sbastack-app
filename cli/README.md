@@ -2,9 +2,25 @@
   create-sbastack-app
 </h1>
 
-<p align="center">
-  CLI to start a SBA Stack Next.js app.
-</p>
+<div align="center">
+
+[![NPM version][npm-image]][npm-url]
+[![Downloads][downloads-image]][npm-url]
+
+</div>
+
+## Table of contents
+
+- <a href="#about">sbastack</a>
+- <a href="#getting-started">Getting Started</a>
+- <a href="#contributors">Contributors</a>
+
+<h2 id="getting-started">sbastack</h2>
+
+A stack made by [Alex](https://substack.com/@alexjamesdunlop):
+
+- [Next.js](https://nextjs.org)
+- [ai sdk](https://ai-sdk.dev)
 
 <h2 id="getting-started">Getting Started</h2>
 
