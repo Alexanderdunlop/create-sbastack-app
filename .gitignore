@@ -4,9 +4,12 @@ dist
 .pnpm-store
 .next
 coverage
+.cursor
 
 .DS_Store
 *.log
+
+test-app
 
 .env
 .env.*
