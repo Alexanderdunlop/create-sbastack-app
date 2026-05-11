@@ -1,10 +1,20 @@
 import { spawn } from "node:child_process";
+import type { StdioOptions } from "node:child_process";
 
-export async function runCommand(command: string, args: string[], cwd: string): Promise<void> {
+interface RunCommandOptions {
+  stdio?: StdioOptions;
+}
+
+export async function runCommand(
+  command: string,
+  args: string[],
+  cwd: string,
+  options: RunCommandOptions = {},
+): Promise<void> {
   await new Promise<void>((resolve, reject) => {
     const child = spawn(command, args, {
       cwd,
-      stdio: "inherit",
+      stdio: options.stdio ?? "inherit",
       shell: process.platform === "win32",
     });
 

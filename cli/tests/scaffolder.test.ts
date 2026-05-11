@@ -33,6 +33,7 @@ describe("scaffoldProject", () => {
     const page = await fs.readFile(path.join(targetDir, "app/page.tsx"), "utf8");
     const chatRoute = await fs.readFile(path.join(targetDir, "app/api/chat/route.ts"), "utf8");
     const envExample = await fs.readFile(path.join(targetDir, ".env.example"), "utf8");
+    const gitignore = await fs.readFile(path.join(targetDir, ".gitignore"), "utf8");
     const layout = await fs.readFile(path.join(targetDir, "app/layout.tsx"), "utf8");
     const readme = await fs.readFile(path.join(targetDir, "README.md"), "utf8");
     const favicon = await fs.stat(path.join(targetDir, "app/favicon.ico"));
@@ -56,6 +57,8 @@ describe("scaffoldProject", () => {
     expect(envExample).toContain("QSTASH_TOKEN=");
     expect(envExample).toContain("UPSTASH_BOX_API_KEY=");
     expect(envExample).toContain("UPSTASH_BOX_ID=");
+    expect(gitignore).toContain("/node_modules");
+    await expect(fs.stat(path.join(targetDir, "gitignore"))).rejects.toThrow();
     expect(layout).toContain('title: "Create Next App"');
     expect(readme).toContain("bootstrapped with [`create-next-app`]");
     expect(page).not.toContain("{{PROJECT_NAME}}");

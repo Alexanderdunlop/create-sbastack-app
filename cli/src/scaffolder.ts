@@ -22,6 +22,7 @@ export async function scaffoldProject(options: ScaffoldOptions): Promise<void> {
     overwrite: true,
     errorOnExist: false,
   });
+  await writeGitignore(targetDir);
 
   await writePackageJson(targetDir, {
     name: packageName,
@@ -47,4 +48,14 @@ async function writePackageJson(targetDir: string, overrides: PackageJson): Prom
   const packageJson = mergePackageJson(basePackageJson, overrides);
 
   await fs.writeJson(packageJsonPath, packageJson, { spaces: 2 });
+}
+
+async function writeGitignore(targetDir: string): Promise<void> {
+  const packageSafeTemplatePath = path.join(targetDir, "gitignore");
+
+  if (await fs.pathExists(packageSafeTemplatePath)) {
+    await fs.move(packageSafeTemplatePath, path.join(targetDir, ".gitignore"), {
+      overwrite: true,
+    });
+  }
 }
