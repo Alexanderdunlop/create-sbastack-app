@@ -69,4 +69,8 @@ export const { POST } = serve<ChatWorkflowPayload, ChatWorkflowResult>(
       runId: payload.run_id,
     };
   },
+  {
+    // The chat UI posts to this route directly, so requests are not QStash-signed.
+    receiver: undefined,
+  },
 );
