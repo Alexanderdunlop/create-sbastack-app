@@ -31,17 +31,25 @@ describe("scaffoldProject", () => {
       dependencies: Record<string, string>;
     };
     const page = await fs.readFile(path.join(targetDir, "app/page.tsx"), "utf8");
+    const chatRoute = await fs.readFile(path.join(targetDir, "app/api/chat/route.ts"), "utf8");
+    const envExample = await fs.readFile(path.join(targetDir, ".env.example"), "utf8");
     const layout = await fs.readFile(path.join(targetDir, "app/layout.tsx"), "utf8");
     const readme = await fs.readFile(path.join(targetDir, "README.md"), "utf8");
     const favicon = await fs.stat(path.join(targetDir, "app/favicon.ico"));
 
     expect(packageJson.name).toBe("my-app");
     expect(packageJson.dependencies.next).toBe("16.2.6");
+    expect(packageJson.dependencies.ai).toBe("6.0.177");
+    expect(packageJson.dependencies["@ai-sdk/react"]).toBe("3.0.179");
     expect(packageJson).not.toHaveProperty("peerDependencies");
     expect(packageJson).not.toHaveProperty("optionalDependencies");
     await expect(fs.stat(path.join(targetDir, "src"))).rejects.toThrow();
     expect(favicon.isFile()).toBe(true);
-    expect(page).toContain("To get started, edit the page.tsx file.");
+    expect(page).toContain('api: "/api/chat"');
+    expect(page).toContain("sendMessage({ text: input })");
+    expect(chatRoute).toContain('model: "openai/gpt-5.3-chat"');
+    expect(chatRoute).toContain("toUIMessageStreamResponse");
+    expect(envExample).toContain("AI_GATEWAY_API_KEY=");
     expect(layout).toContain('title: "Create Next App"');
     expect(readme).toContain("bootstrapped with [`create-next-app`]");
     expect(page).not.toContain("{{PROJECT_NAME}}");

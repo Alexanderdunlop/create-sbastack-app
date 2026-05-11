@@ -11,14 +11,18 @@
     "build": "turbo build",
     "build:cli": "turbo --filter=create-sbastack-app build",
     "build:www": "turbo --filter=www build",
+    "changeset": "changeset",
+    "changeset:version": "changeset version",
     "dev:cli": "turbo --filter=create-sbastack-app dev",
     "dev:www": "turbo --filter=www dev",
     "lint": "turbo lint",
+    "release": "pnpm build:cli && changeset publish",
     "test": "turbo test",
     "typecheck": "turbo typecheck",
     "clean": "turbo clean && rm -rf node_modules"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.31.0",
     "turbo": "latest"
   }
 }

@@ -1,10 +1,13 @@
 {
   "name": "create-sbastack-app",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "license": "MIT",
   "bin": {
     "create-sbastack-app": "./dist/index.js"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "files": [
     "dist",
@@ -16,7 +19,7 @@
     "lint": "eslint src tests",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "pub:release": "pnpm build && npm publish"
+    "pub:release": "pnpm --workspace-root release"
   },
   "dependencies": {
     "@clack/prompts": "latest",
